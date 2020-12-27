@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -47,6 +48,17 @@ public class ClienteController {
 			.map(cliente -> {
 				clienteRepository.delete(cliente);
 				return Void.TYPE;
+			})
+			.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+	
+	@PutMapping
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void atualizar(@RequestBody Cliente clienteAtualizado) {
+		clienteRepository
+			.findById(clienteAtualizado.getId())
+			.map (cliente -> {
+				return clienteRepository.save(clienteAtualizado);
 			})
 			.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 	}
