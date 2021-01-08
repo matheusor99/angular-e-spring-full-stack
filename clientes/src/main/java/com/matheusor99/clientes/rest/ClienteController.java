@@ -1,5 +1,7 @@
 package com.matheusor99.clientes.rest;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.matheusor99.clientes.model.entitys.Cliente;
-import com.matheusor99.clientes.model.repository.ClienteRepository;
+import com.matheusor99.clientes.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/api/clientes")
@@ -42,6 +44,12 @@ public class ClienteController {
 		return clienteRepository
 				.findById(id)
 				.orElseThrow( () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
+	}
+	
+	@GetMapping()
+	public List<Cliente> findAll() {
+		return clienteRepository
+				.findAll();
 	}
 	
 	@DeleteMapping("/{id}")
