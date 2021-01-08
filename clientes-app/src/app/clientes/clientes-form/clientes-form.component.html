@@ -1,6 +1,6 @@
 <h1 class="mt-4">Clientes</h1>
 <ol class="breadcrumb mb-4">
-    <li class="breadcrumb-item active">Cadastro</li>
+    <li class="breadcrumb-item active">{{ cliente.id ? "Edição" : "Cadastro"}}</li>
 </ol>
 <div class="container">
     <!-- event bind representado por () significa que quero pegar algum evento no caso aqui o ngSubmit -->
@@ -46,9 +46,15 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
-                <button type="submit" class="btn btn-success" >
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-success" *ngIf="!cliente.id">
                     <i class="fa fa-save"></i> Salvar
+                </button>
+                <button type="submit" class="btn btn-primary" *ngIf="cliente.id">
+                    <i class="fa fa-update"></i> Editar
+                </button>
+                <button type="button" class="btn btn-danger ml-1" (click)="voltar()" >
+                    <i class="fa fa-arrow-alt-circle-left"></i> Voltar
                 </button>
             </div>
         </div>

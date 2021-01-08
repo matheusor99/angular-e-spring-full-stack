@@ -17,4 +17,16 @@ export class ClientesService {
   salvar(cliente:Cliente) : Observable<Cliente> {
     return this.http.post<Cliente>(this.url, cliente);
   }
+
+  getCLientes() : Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.url);   
+  }
+
+  getClienteById(id: number) : Observable<Cliente> {
+    return this.http.get<any>(this.url + "/" + id);
+  }
+
+  atualizar(cliente: Cliente) : Observable<any> {
+    return this.http.put<Cliente>(this.url+"/"+cliente.id, cliente);
+  }
 }
