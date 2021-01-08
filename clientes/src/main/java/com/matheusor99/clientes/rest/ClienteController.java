@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.matheusor99.clientes.model.entitys.Cliente;
-import com.matheusor99.clientes.repository.ClienteRepository;
+import com.matheusor99.clientes.model.repository.ClienteRepository;
 
 @RestController
 @RequestMapping("/api/clientes")
