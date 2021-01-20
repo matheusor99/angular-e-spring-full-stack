@@ -1,6 +1,7 @@
 package com.matheusor99.clientes.rest;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -36,7 +37,13 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente salvar( @RequestBody @Valid Cliente cliente) {
-		return clienteRepository.save(cliente);
+		Optional<Cliente> clienteCpfCadastrado = clienteRepository.findByCpf(cliente.getCpf());
+		if ( !clienteCpfCadastrado.isPresent() ) {
+			return clienteRepository.save(cliente);			
+		} else {
+			return clienteCpfCadastrado
+				.orElseThrow( () -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "CPF já cadastrado"));
+		}
 	}
 	
 	@GetMapping("/{id}")
