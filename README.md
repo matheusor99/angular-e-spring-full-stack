@@ -13,7 +13,7 @@ Este projeto esta sendo desenvolvido como estudo para um cruso Spring e Angular
 ## Back-end
 Entre no diretorio .\clientes e digite no terminal: &nbsp;
 
-- `mvn clean instal` &nbsp;
+- `mvn clean install` &nbsp;
 
 - `java -jar .\target\clientes-0.0.1-SNAPSHOT.jar `
 
