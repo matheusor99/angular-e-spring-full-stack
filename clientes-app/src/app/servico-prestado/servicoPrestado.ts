@@ -1,6 +1,6 @@
 export class ServicoPrestado {
     descricao: string;
-    preco:string;
+    valor:string;
     data:string;
     idCliente:number;
 }
